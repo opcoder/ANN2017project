@@ -1,0 +1,33 @@
+# depslib dependency file v1.0
+1494771437 source:e:\workspace\ann\main.cpp
+	<iostream>
+	<cassert>
+	"net.hpp"
+
+1494772958 e:\workspace\ann\net.hpp
+	"layer.hpp"
+	<fstream>
+	<vector>
+
+1494773559 e:\workspace\ann\layer.hpp
+	"utils.hpp"
+
+1494773507 e:\workspace\ann\utils.hpp
+	<stdlib.h>
+	<math.h>
+	<vector>
+	<cassert>
+	<cstring>
+
+1494773608 source:e:\workspace\ann\layer.cpp
+	"layer.hpp"
+
+1494773631 source:e:\workspace\ann\net.cpp
+	"net.hpp"
+	<iostream>
+
+1494773519 source:e:\workspace\ann\utils.cpp
+	<cmath>
+	<cstdlib>
+	"utils.hpp"
+

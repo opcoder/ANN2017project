@@ -3,7 +3,10 @@
 
 #include "layer.hpp"
 #include <fstream>
+#include <vector>
 
+using std::vector;
+using std::string;
 class Net {
 public:
     Net(int layer_num) {
@@ -11,8 +14,8 @@ public:
         for (int i = 0; i < layer_num; ++i) {
             layers_.push_back(new Layer());
         }
-    }
-    Net(string model_name) {
+    };
+    Net(std::string model_name) {
         std::ifstream reader(model_name);
         int layer_num;
         reader >> layer_num;
@@ -28,15 +31,15 @@ public:
             }
             this->layers_.push_back(new Layer(ActivateFunction(activation), weights));
         }
-    }
-    vector<double> Forward();
-    vector<double> Backward();
+    };
+    vector<double> Forward(vector<double> bottom_data);
+    vector<double> Backward(vector<double> top_diff);
     void ApplyUpdate(int batch_size);
-    void InitNet(vector<int> layers_dim, vector<WeightFiller> layers_filler, vector<double>, 
-        layers_lr, vector<vector<int> > layers_filler_range, ActivateFunction layers_activation);
+    void InitNet(vector<int> layers_dim, vector<WeightFiller> layers_filler, vector<double>
+        layers_lr, vector<vector<double> > layers_filler_range, vector<ActivateFunction> layers_activation);
     void train(vector<vector<double> > train_data,
         vector<vector<double> > train_label, int max_iter, int batch_size = -1);
-    void save_model(string model_name);
+    void SaveModel(string model_name);
 private:
     std::vector<Layer*> layers_;
 };

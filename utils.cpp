@@ -1,7 +1,8 @@
 #include <cmath>
 #include <cstdlib>
+#include "utils.hpp"
 
-#incllude "utils.hpp"
+using std::vector;
 
 double gaussian_rand(double mu, double sigma) {
     static double V1, V2, S;
@@ -22,7 +23,7 @@ double gaussian_rand(double mu, double sigma) {
     return X * sigma + mu;
 }
 
-vector<double> gaussian_filler(int N, double mu = 0, double sigma = 1.0) {
+vector<double> gaussian_filler(int N, double mu, double sigma) {
     vector<double> filler;
     for (int i = 0; i < N; ++i) {
         filler.push_back(gaussian_rand(mu, sigma));
@@ -40,11 +41,11 @@ vector<double> uniform_filler(int N, double min_value, double max_value) {
     return filler;
 }
 
-double euclidean_distance(const vector<double> &A, const vector<double> &B) {
-    double loss = 0;
-    assert(A.size() == B.size());
-    for (int i = 0; i < A.size(); ++i) {
-        loss += (A[i] - B[i]) * (A[i] - B[i]) / 2.0;
-    }
-    return loss;
-}
+//double euclidean_distance(const vector<double> &A, const vector<double> &B) {
+//    double loss = 0;
+//    assert(A.size() == B.size());
+//    for (int i = 0; i < A.size(); ++i) {
+//        loss += (A[i] - B[i]) * (A[i] - B[i]) / 2.0;
+//    }
+//    return loss;
+//}
