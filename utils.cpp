@@ -1,3 +1,7 @@
+//
+// Created by wcbao on 2017/5/15.
+//
+
 #include <cmath>
 #include <cstdlib>
 #include "utils.hpp"
@@ -41,11 +45,20 @@ vector<double> uniform_filler(int N, double min_value, double max_value) {
     return filler;
 }
 
-//double euclidean_distance(const vector<double> &A, const vector<double> &B) {
-//    double loss = 0;
-//    assert(A.size() == B.size());
-//    for (int i = 0; i < A.size(); ++i) {
-//        loss += (A[i] - B[i]) * (A[i] - B[i]) / 2.0;
-//    }
-//    return loss;
-//}
+double euclidean_distance(const vector<double> &A, const vector<double> &B) {
+    double loss = 0;
+    assert(A.size() == B.size());
+    for (int i = 0; i < (int)A.size(); ++i) {
+        loss += (A[i] - B[i]) * (A[i] - B[i]) / 2.0;
+    }
+    return loss;
+}
+double fast_power(double x, int p) {
+    double res = 1;
+    while(p) {
+        if (p&1) res = res * x;
+        x = x * x;
+        p >>= 1;
+    }
+    return res;
+}
