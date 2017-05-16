@@ -7,6 +7,7 @@
 const double beta1 = 0.9;
 const double beta2 = 0.999;
 const double eps = 1e-8;
+const double gaussian_sigma = 0.01;
 
 void Layer::Reshape(int bottom_dim, int top_dim) {
     this->bottom_dim_ = bottom_dim;
@@ -34,7 +35,8 @@ void Layer::Init(WeightFiller filler, double lr, vector<double> range,
     const double min_value = range[0], max_value = range[1];
     if (filler == Gaussian_filler) {
         double mu = (range[0] + range[1]) / 2.0;
-        double sigma = std::min(0.01, (range[1] - range[0]) / 6.0);
+        double sigma = std::min(gaussian_sigma, (range[1] - range[0]) / 6.0);
+
         vector<double> rand_filler = gaussian_filler(N, mu, sigma);
         for (int i = 0, index = 0; i < next_layer_dim; ++i){
             for (int j = 0; j < this_layer_dim + 1; ++j, ++index) {
